@@ -19,7 +19,7 @@ if($mobile_template)
 
     $mobile_browser = '0'; //default: not mobile
 
-    if(preg_match('/(up.browser|up.link|mmp|symbian|smartphone|midp|wap|phone)/i', strtolower($_SERVER['HTTP_USER_AGENT'])))
+     if(preg_match('/(up.browser|up.link|mmp|symbian|smartphone|midp|wap|phone|BlackBerry|Android)/i', strtolower($_SERVER['HTTP_USER_AGENT'])))
         $mobile_browser++;
 
     if((isset($_SERVER['HTTP_ACCEPT'])) and (strpos(strtolower($_SERVER['HTTP_ACCEPT']),'application/vnd.wap.xhtml+xml') !== false))
