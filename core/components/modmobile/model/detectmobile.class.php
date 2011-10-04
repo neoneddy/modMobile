@@ -49,7 +49,7 @@ class DetectMobile {
         $mobile_browser = false; //default: not mobile
         $user_agent = strtolower($_SERVER['HTTP_USER_AGENT']);
         
-        if ( preg_match('/(up.browser|up.link|mmp|symbian|smartphone|midp|wap|phone)/i', $user_agent) ) {
+        if ( preg_match('/(up.browser|up.link|mmp|symbian|smartphone|midp|wap|phone|BlackBerry|Android)/i', $user_agent) ) {
             $mobile_browser = true;
         } elseif((isset($_SERVER['HTTP_ACCEPT'])) and 
                 (strpos(strtolower($_SERVER['HTTP_ACCEPT']),'application/vnd.wap.xhtml+xml') !== false)){
