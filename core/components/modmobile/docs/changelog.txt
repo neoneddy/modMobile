@@ -1,6 +1,10 @@
 Changelog for modMobile
 
 =============================
+- 1.1 pl
+  - Fix path in the modMobile snippet
+
+=============================
 - 1.0 pl
   - Complete Code refactor
   - Added optional mobile/fullsite rather then forcing one or the other
