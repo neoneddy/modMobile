@@ -9,8 +9,10 @@
 
 Description:
 This package installs a 'modMobile' plugin and a modMobile snippet. The plugin will auto detect if a user is on a mobile device.
-From there you can configure a template to be used for mobile devices.  And/or the plugin can set a property value (mobile) and 
-then you can use the property in your Template with the If snippet like so:
+From there you can configure a template to be used for mobile devices.  And/or the plugin can set a placeholder and 
+then you can use the property in your Template, Snippet or Chunks.
+
+Use the If snippet like so:
 [[If?
   &subject=`[[+modxSiteTemplate]]`
   &operand=`mobile`

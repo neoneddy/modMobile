@@ -20,7 +20,7 @@ $get_var = $modx->getOption('modmobile.get_var');
 // just assign an option/property(user) to be used via an [[If]] in a template/chunck/snippet
 $use_if = $modx->getOption('modmobile.use_if');
 
-require_once 'components/modMobile/model/detectmobile.class.php';
+require_once MODX_CORE_PATH.'components/modMobile/model/detectmobile.class.php';
 
 //only proceed when there is a mobile theme
 if( !empty($use_if) && $use_if ) {

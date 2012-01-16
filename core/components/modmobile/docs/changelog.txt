@@ -1,6 +1,6 @@
 Changelog for modMobile
 
-================================================================
+=============================
 - 1.0 pl
   - Complete Code refactor
   - Added optional mobile/fullsite rather then forcing one or the other
@@ -8,5 +8,5 @@ Changelog for modMobile
   - Using System settings to configure
   - Added a snippet that returns mobile/full that can be used with the If snippet 
 
-================================================================
+==============================
 - Initial release 0.1-alpha March 3, 2011
