@@ -1,10 +1,11 @@
 ================================================================
     modMobile: Change template on the fly for mobile devices!
 
-    Version: 1.0 pl
-    Developed by: Jeroen Kenters / www.kenters.com
-    Refactored by: Joshua Gulledge
+    Version: 1.0.2 pl
+    Refactored and maintained by: Joshua Gulledge
+    Orginally Developed by: Jeroen Kenters / www.kenters.com
     Based on code by: Danny Herran  / www.dannyherran.com
+    Report issues: https://github.com/jgulledge19/modMobile/issues
 ================================================================
 
 Description:

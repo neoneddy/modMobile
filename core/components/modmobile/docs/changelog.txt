@@ -1,7 +1,12 @@
 Changelog for modMobile
 
+
 =============================
-- 1.1 pl
+- 1.0.2 pl
+  - Fix #1 a conflict with use_if and setting a mobile template. 
+
+=============================
+- 1.0.1 pl
   - Fix path in the modMobile snippet
 
 =============================
