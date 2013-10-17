@@ -27,7 +27,9 @@ require_once MODX_CORE_PATH.'components/modmobile/model/detectmobile.class.php';
 $mobile_template = $modx->getOption('modmobile.mobile_template', '', 0);
 
 $mobile = new DetectMobile();
+$modx->log(modX::LOG_LEVEL_ERROR,'ModMobile-> Start Plugin: ');
 if ( $mobile->run() == 'mobile' ){
+    $modx->log(modX::LOG_LEVEL_ERROR,'ModMobile-> Set to mobile ');
     if( !empty($use_if) && $use_if ) {
         $modx->setPlaceholder($get_var, 'mobile');
         if ( $mobile_template > 0 ) {
@@ -38,9 +40,11 @@ if ( $mobile->run() == 'mobile' ){
     }
     if ( $mobile_template > 0 ) {
         $modx->resource->set('template', $mobile_template);
+        $modx->log(modX::LOG_LEVEL_ERROR,'ModMobile-> Mobile template: '.$mobile_template);
     }
     $_SESSION[$get_var] = 'mobile';
 } else {
+    $modx->log(modX::LOG_LEVEL_ERROR,'ModMobile-> Full/Default Template ');
     if( !empty($use_if) && $use_if ) {
         $modx->setPlaceholder($get_var, 'full');
         if ( $mobile_template > 0 ) {

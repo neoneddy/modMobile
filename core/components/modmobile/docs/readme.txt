@@ -9,6 +9,12 @@
 ================================================================
 
 Description:
+ModMobile allows you to create an adaptive design for your website.  Good article to review: http://www.lullabot.com/articles/responsive-adaptive-web-design.   
+You can keep your standard template and then just create a mobile template and modmobile can send the user the correct one 
+based on the device or based on their preference.  You can also hide or show parts of your template based on what version is 
+being displayed, full or mobile.
+
+Technical 
 This package installs a 'modMobile' plugin and a modMobile snippet. The plugin will auto detect if a user is on a mobile device.
 From there you can configure a template to be used for mobile devices.  And/or the plugin can set a placeholder and 
 then you can use the property in your Template, Snippet or Chunks.
