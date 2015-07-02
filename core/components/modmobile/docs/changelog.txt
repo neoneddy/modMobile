@@ -1,0 +1,21 @@
+Changelog for modMobile
+
+
+=============================
+- 1.0.2 pl
+  - Fix #1 a conflict with use_if and setting a mobile template. 
+
+=============================
+- 1.0.1 pl
+  - Fix path in the modMobile snippet
+
+=============================
+- 1.0 pl
+  - Complete Code refactor
+  - Added optional mobile/fullsite rather then forcing one or the other
+  - Prefromance enhancements, using cookies to detect what user choice is mobile/full
+  - Using System settings to configure
+  - Added a snippet that returns mobile/full that can be used with the If snippet 
+
+==============================
+- Initial release 0.1-alpha March 3, 2011

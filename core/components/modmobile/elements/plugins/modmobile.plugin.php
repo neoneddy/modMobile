@@ -4,62 +4,55 @@
  *
  * Package by: Jeroen Kenters / www.kenters.com
  * Based on code of Danny Herran (http://www.dannyherran.com/2011/02/detect-mobile-browseruser-agent-with-php-ipad-iphone-blackberry-and-others/)
- *
+ * 
+ * Revised by: Joshua Gulledge
  * License: GNU GENERAL PUBLIC LICENSE Version 2, June 1991
  *
  * */
 
-//get mobile theme setting
-$mobile_template = $modx->getOption('mobile_template');
+/**
+ * $get_var this is the name of the value that you wish to have 
+ *  retrieve weather or not the mode is mobile or full(PC).  Default is
+ *  modxSiteTemplate, this is an example of what URL you would need to create
+ *  like mypage.html?modxSiteTemplate=mobile
+ */
+$get_var = $modx->getOption('modmobile.get_var');
+ 
+// just assigns a PlaceHolder to modmobile.get_var which can be used via an [[If]] in a template/chunck/snippet
+$use_if = $modx->getOption('modmobile.use_if');
 
-//only proceed when there is a mobile theme
-if($mobile_template)
-{
-    $_SERVER['ALL_HTTP'] = isset($_SERVER['ALL_HTTP']) ? $_SERVER['ALL_HTTP'] : '';
+require_once MODX_CORE_PATH.'components/modmobile/model/detectmobile.class.php';
 
-    $mobile_browser = '0'; //default: not mobile
+// get mobile theme setting
+$mobile_template = $modx->getOption('modmobile.mobile_template', '', 0);
 
-    if(preg_match('/(up.browser|up.link|mmp|symbian|smartphone|midp|wap|phone)/i', strtolower($_SERVER['HTTP_USER_AGENT'])))
-        $mobile_browser++;
-
-    if((isset($_SERVER['HTTP_ACCEPT'])) and (strpos(strtolower($_SERVER['HTTP_ACCEPT']),'application/vnd.wap.xhtml+xml') !== false))
-        $mobile_browser++;
-
-    if(isset($_SERVER['HTTP_X_WAP_PROFILE']))
-        $mobile_browser++;
-
-    if(isset($_SERVER['HTTP_PROFILE']))
-        $mobile_browser++;
-
-    $mobile_ua = strtolower(substr($_SERVER['HTTP_USER_AGENT'],0,4));
-    $mobile_agents = array(
-                        'w3c ','acs-','alav','alca','amoi','audi','avan','benq','bird','blac',
-                        'blaz','brew','cell','cldc','cmd-','dang','doco','eric','hipt','inno',
-                        'ipaq','java','jigs','kddi','keji','leno','lg-c','lg-d','lg-g','lge-',
-                        'maui','maxo','midp','mits','mmef','mobi','mot-','moto','mwbp','nec-',
-                        'newt','noki','oper','palm','pana','pant','phil','play','port','prox',
-                        'qwap','sage','sams','sany','sch-','sec-','send','seri','sgh-','shar',
-                        'sie-','siem','smal','smar','sony','sph-','symb','t-mo','teli','tim-',
-                        'tosh','tsm-','upg1','upsi','vk-v','voda','wap-','wapa','wapi','wapp',
-                        'wapr','webc','winw','winw','xda','xda-'
-                        );
-
-    if(in_array($mobile_ua, $mobile_agents))
-        $mobile_browser++;
-
-    if(strpos(strtolower($_SERVER['ALL_HTTP']), 'operamini') !== false)
-        $mobile_browser++;
-
-    if(strpos(strtolower($_SERVER['HTTP_USER_AGENT']), 'ipad') !== false)
-        $mobile_browser++;
-
-    if(strpos(strtolower($_SERVER['HTTP_USER_AGENT']), 'windows') !== false)
-        $mobile_browser=0;
-
-    //change template if mobile browser is found
-    if($mobile_browser>0) {
-        $modx->resource->set('template', $mobile_template);
+$mobile = new DetectMobile();
+$modx->log(modX::LOG_LEVEL_ERROR,'ModMobile-> Start Plugin: ');
+if ( $mobile->run() == 'mobile' ){
+    $modx->log(modX::LOG_LEVEL_ERROR,'ModMobile-> Set to mobile ');
+    if( !empty($use_if) && $use_if ) {
+        $modx->setPlaceholder($get_var, 'mobile');
+        if ( $mobile_template > 0 ) {
+            $modx->setPlaceholder('mobiletemplate', 'Set template: '.$mobile_template);
+        } else {
+            $modx->setPlaceholder('mobiletemplate', 'No template set');
+        }
     }
+    if ( $mobile_template > 0 ) {
+        $modx->resource->set('template', $mobile_template);
+        $modx->log(modX::LOG_LEVEL_ERROR,'ModMobile-> Mobile template: '.$mobile_template);
+    }
+    $_SESSION[$get_var] = 'mobile';
+} else {
+    $modx->log(modX::LOG_LEVEL_ERROR,'ModMobile-> Full/Default Template ');
+    if( !empty($use_if) && $use_if ) {
+        $modx->setPlaceholder($get_var, 'full');
+        if ( $mobile_template > 0 ) {
+            $modx->setPlaceholder('mobiletemplate', 'Default template ');
+        } else {
+            $modx->setPlaceholder('mobiletemplate', 'No template set');
+        }
+    }
+    $_SESSION[$get_var] = 'full';
 }
-return true;
-?>
+return;
